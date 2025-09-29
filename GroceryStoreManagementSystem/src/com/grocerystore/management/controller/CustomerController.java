@@ -30,4 +30,24 @@ public class CustomerController {
         return res > 0;
     }
     
+    public static Customer searchCustomer(String id) throws ClassNotFoundException, SQLException{
+        String SQL = "Select * From Customer Where id='"+id+"'";
+        java.sql.Connection connection = DBConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(SQL);
+        if(rst.next()){
+            String name = rst.getString("name");
+            String address = rst.getString("address");
+            double salary = rst.getDouble("salary");
+            return new Customer(id, name, address, salary);
+        }
+        return null;
+    }
+    
+    public static boolean deleteCustomer(String id) throws ClassNotFoundException, SQLException{
+        String SQL = "Delete From Customer where id='" + id + "'";
+        Statement stm = DBConnection.getInstance().getConnection().createStatement();
+        return stm.executeUpdate(SQL) > 0;
+    }
+    
 }

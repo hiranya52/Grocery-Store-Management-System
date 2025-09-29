@@ -4,6 +4,13 @@
  */
 package com.grocerystore.management.view.customerView;
 
+import com.grocerystore.management.controller.CustomerController;
+import com.grocerystore.management.model.Customer;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hiranyamendis
@@ -169,7 +176,17 @@ public class DeleteCustomerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        try {
+            String id = txtCusId.getText();
+            boolean isDeleted = CustomerController.deleteCustomer(id);
+            if (isDeleted) {
+                JOptionPane.showMessageDialog(this, "Deleted Successfully!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Customer delete Unsuccessfull!");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DeleteCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalaryActionPerformed
@@ -177,7 +194,19 @@ public class DeleteCustomerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSalaryActionPerformed
 
     private void txtCusIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCusIdActionPerformed
-        // TODO add your handling code here:
+        try {
+            String id = txtCusId.getText();
+            Customer customer = CustomerController.searchCustomer(id);
+            if (customer!=null) {
+                txtName.setText(customer.getName());
+                txtAddress.setText(customer.getAddress());
+                txtSalary.setText(String.valueOf(customer.getSalary()));
+            }else{
+                JOptionPane.showMessageDialog(this, "Customer not found!");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DeleteCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtCusIdActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed

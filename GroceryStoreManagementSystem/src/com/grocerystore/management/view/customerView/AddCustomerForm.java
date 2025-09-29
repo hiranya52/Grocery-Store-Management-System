@@ -201,7 +201,7 @@ public class AddCustomerForm extends javax.swing.JFrame {
             Customer customer = new Customer(cusId, name, address, salary);
             boolean isAdded=CustomerController.addCustomer(customer);
             if (isAdded) {
-                JOptionPane.showMessageDialog(this, "Added Successfully");
+                JOptionPane.showMessageDialog(this, "Added Successfully!");
             }else{
                 JOptionPane.showMessageDialog(this, "Customer add Unsuccessful!");
             }
