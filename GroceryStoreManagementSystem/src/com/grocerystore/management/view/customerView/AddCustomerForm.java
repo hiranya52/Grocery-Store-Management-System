@@ -4,6 +4,13 @@
  */
 package com.grocerystore.management.view.customerView;
 
+import com.grocerystore.management.controller.CustomerController;
+import com.grocerystore.management.model.Customer;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hiranyamendis
@@ -185,7 +192,22 @@ public class AddCustomerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        try {
+            String cusId = txtCusId.getText();
+            String name = txtName.getText();
+            String address = txtAddress.getText();
+            double salary = Double.parseDouble(txtSalary.getText());
+
+            Customer customer = new Customer(cusId, name, address, salary);
+            boolean isAdded=CustomerController.addCustomer(customer);
+            if (isAdded) {
+                JOptionPane.showMessageDialog(this, "Added Successfully");
+            }else{
+                JOptionPane.showMessageDialog(this, "Customer add Unsuccessful!");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
