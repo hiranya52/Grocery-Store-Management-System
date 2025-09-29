@@ -50,4 +50,15 @@ public class CustomerController {
         return stm.executeUpdate(SQL) > 0;
     }
     
+    public static boolean updateCustomer(Customer customer) throws ClassNotFoundException, SQLException {
+        String SQL = "Update Customer set name=?, address=?, salary=? where id=?";
+        java.sql.Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = connection.prepareStatement(SQL);
+        stm.setObject(4, customer.getId());
+        stm.setObject(1, customer.getName());
+        stm.setObject(2, customer.getAddress());
+        stm.setObject(3, customer.getSalary());
+        return stm.executeUpdate() > 0;
+    }
+    
 }
