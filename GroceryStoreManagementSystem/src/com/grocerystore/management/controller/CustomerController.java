@@ -11,6 +11,7 @@ import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -59,6 +60,18 @@ public class CustomerController {
         stm.setObject(2, customer.getAddress());
         stm.setObject(3, customer.getSalary());
         return stm.executeUpdate() > 0;
+    }
+    
+    public static ArrayList<Customer> getAllCustomers() throws ClassNotFoundException, SQLException {
+        String SQL = "Select * From Customer";
+        java.sql.Connection connection = DBConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(SQL);
+        ArrayList<Customer> customerList = new ArrayList<>();
+        while (rst.next()) {
+            customerList.add(new Customer(rst.getString("id"), rst.getString("name"), rst.getString("address"), rst.getDouble("salary")));
+        }
+        return customerList;
     }
     
 }

@@ -4,6 +4,14 @@
  */
 package com.grocerystore.management.view.customerView;
 
+import com.grocerystore.management.controller.CustomerController;
+import com.grocerystore.management.model.Customer;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hiranyamendis
@@ -28,9 +36,9 @@ public class ViewCustomerForm extends javax.swing.JFrame {
 
         btnCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
+        btnReload = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCustomerDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,17 +58,17 @@ public class ViewCustomerForm extends javax.swing.JFrame {
         jLabel1.setText("View Customer Form");
         jLabel1.setOpaque(true);
 
-        btnUpdate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnUpdate.setText("Realod");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnReload.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnReload.setText("Realod");
+        btnReload.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnReload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnReloadActionPerformed(evt);
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomerDetails.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        tblCustomerDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,12 +79,12 @@ public class ViewCustomerForm extends javax.swing.JFrame {
                 "Customer ID", "Name", "Address", "Salary"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Customer ID");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Name");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Address");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Salary");
+        jScrollPane1.setViewportView(tblCustomerDetails);
+        if (tblCustomerDetails.getColumnModel().getColumnCount() > 0) {
+            tblCustomerDetails.getColumnModel().getColumn(0).setHeaderValue("Customer ID");
+            tblCustomerDetails.getColumnModel().getColumn(1).setHeaderValue("Name");
+            tblCustomerDetails.getColumnModel().getColumn(2).setHeaderValue("Address");
+            tblCustomerDetails.getColumnModel().getColumn(3).setHeaderValue("Salary");
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,7 +98,7 @@ public class ViewCustomerForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(296, 296, 296))
@@ -104,7 +112,7 @@ public class ViewCustomerForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReload, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -115,9 +123,19 @@ public class ViewCustomerForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+        try {
+            DefaultTableModel dtm=(DefaultTableModel) tblCustomerDetails.getModel();
+            ArrayList<Customer> customerList = CustomerController.getAllCustomers();
+            dtm.setRowCount(0);
+            for(Customer customer : customerList){
+                Object[] rowData={customer.getId(),customer.getName(),customer.getAddress(),customer.getSalary()};
+                dtm.addRow(rowData);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ViewCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReloadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,9 +174,9 @@ public class ViewCustomerForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnReload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCustomerDetails;
     // End of variables declaration//GEN-END:variables
 }
