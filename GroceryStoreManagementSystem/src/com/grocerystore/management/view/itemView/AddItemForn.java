@@ -4,6 +4,13 @@
  */
 package com.grocerystore.management.view.itemView;
 
+import com.grocerystore.management.controller.ItemController;
+import com.grocerystore.management.model.Item;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hiranyamendis
@@ -177,7 +184,23 @@ public class AddItemForn extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            String code = txtCode.getText();
+            String description = txtDescription.getText();
+            double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+            int qtyOnHand = Integer.parseInt(txtQty.getText());
+            
+            boolean isAdded = ItemController.addItem(new Item(code, description, unitPrice, qtyOnHand));
+            
+            if (isAdded) {
+                JOptionPane.showMessageDialog(this, "Added Successfully!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Added Unsuccessfull!");
+            }
         
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddItemForn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
