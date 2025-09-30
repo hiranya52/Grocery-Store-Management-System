@@ -73,16 +73,16 @@ public class UpdateCustomerForm extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("ITF Devanagari Marathi", 1, 24)); // NOI18N
-        jLabel2.setText("Customer ID");
+        jLabel2.setText("Customer ID  :  ");
 
         jLabel3.setFont(new java.awt.Font("ITF Devanagari Marathi", 1, 24)); // NOI18N
-        jLabel3.setText("Name");
+        jLabel3.setText("Name  :  ");
 
         jLabel4.setFont(new java.awt.Font("ITF Devanagari Marathi", 1, 24)); // NOI18N
-        jLabel4.setText("Address");
+        jLabel4.setText("Address  :  ");
 
         jLabel5.setFont(new java.awt.Font("ITF Devanagari Marathi", 1, 24)); // NOI18N
-        jLabel5.setText("Salary");
+        jLabel5.setText("Salary  :  ");
 
         txtSalary.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtSalary.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +130,7 @@ public class UpdateCustomerForm extends javax.swing.JFrame {
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)

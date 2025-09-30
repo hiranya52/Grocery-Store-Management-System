@@ -39,7 +39,7 @@
                   <Component id="txtSalary" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
                   <Component id="txtAddress" alignment="0" min="-2" pref="347" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="193" max="32767" attributes="0"/>
+              <EmptySpace pref="161" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -140,7 +140,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="ITF Devanagari Marathi" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Customer ID"/>
+        <Property name="text" type="java.lang.String" value="Customer ID  :  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -148,7 +148,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="ITF Devanagari Marathi" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Name"/>
+        <Property name="text" type="java.lang.String" value="Name  :  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -156,7 +156,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="ITF Devanagari Marathi" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Address"/>
+        <Property name="text" type="java.lang.String" value="Address  :  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -164,7 +164,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="ITF Devanagari Marathi" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Salary"/>
+        <Property name="text" type="java.lang.String" value="Salary  :  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSalary">
