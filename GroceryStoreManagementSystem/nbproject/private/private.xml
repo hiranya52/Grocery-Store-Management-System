@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/hiranyamendis/Desktop/Grocery%20Store/GroceryStoreManagementSystem/src/com/grocerystore/management/model/Customer.java</file>
-            <file>file:/Users/hiranyamendis/Desktop/Grocery%20Store/GroceryStoreManagementSystem/src/com/grocerystore/management/view/customerView/AddCustomerForm.java</file>
             <file>file:/Users/hiranyamendis/Desktop/Grocery%20Store/GroceryStoreManagementSystem/src/com/grocerystore/management/controller/CustomerController.java</file>
-            <file>file:/Users/hiranyamendis/Desktop/Grocery%20Store/GroceryStoreManagementSystem/src/com/grocerystore/management/view/customerView/DeleteCustomerForm.java</file>
+            <file>file:/Users/hiranyamendis/Desktop/Grocery%20Store/GroceryStoreManagementSystem/src/com/grocerystore/management/view/customerView/ViewCustomerForm.java</file>
         </group>
     </open-files>
 </project-private>
