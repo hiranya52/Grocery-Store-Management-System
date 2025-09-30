@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -60,6 +61,18 @@ public class ItemController {
         stm.setObject(2, item.getUnitPrice());
         stm.setObject(3, item.getQtyOnHand());
         return stm.executeUpdate() > 0;
+    }
+    
+    public static ArrayList<Item> getAllItems() throws ClassNotFoundException, SQLException {
+        String SQL = "Select * From Item";
+        Connection connection = DBConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(SQL);
+        ArrayList<Item> itemList = new ArrayList<>();
+        while (rst.next()) {
+            itemList.add(new Item(rst.getString("code"), rst.getString("description"), rst.getDouble("unitPrice"), rst.getInt("qtyOnHand")));
+        }
+        return itemList;
     }
     
     

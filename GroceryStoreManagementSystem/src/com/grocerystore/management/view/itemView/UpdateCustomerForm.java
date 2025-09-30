@@ -217,7 +217,7 @@ public class UpdateCustomerForm extends javax.swing.JFrame {
             if (isUpdated) {
                 JOptionPane.showMessageDialog(this, "Update Successfully!");
             }else{
-                JOptionPane.showMessageDialog(this, "Update Successfully!");
+                JOptionPane.showMessageDialog(this, "Update Unsuccessfull!");
             }
         
         } catch (ClassNotFoundException | SQLException ex) {

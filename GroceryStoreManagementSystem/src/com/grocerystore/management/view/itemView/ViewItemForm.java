@@ -4,6 +4,14 @@
  */
 package com.grocerystore.management.view.itemView;
 
+import com.grocerystore.management.controller.ItemController;
+import com.grocerystore.management.model.Item;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hiranyamendis
@@ -106,7 +114,18 @@ public class ViewItemForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        
+        try {
+            DefaultTableModel dtm=(DefaultTableModel) tblItemView.getModel();
+            ArrayList<Item> itemList = ItemController.getAllItems();
+            dtm.setRowCount(0);
+            for (Item item : itemList) {
+                Object[] rowData={item.getCode(),item.getDescription(),item.getUnitPrice(),item.getQtyOnHand()};
+                dtm.addRow(rowData);
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ViewItemForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnReloadActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
