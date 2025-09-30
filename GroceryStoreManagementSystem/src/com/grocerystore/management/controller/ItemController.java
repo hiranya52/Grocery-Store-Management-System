@@ -8,7 +8,9 @@ import com.grocerystore.management.db.DBConnection;
 import com.grocerystore.management.model.Item;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -27,4 +29,26 @@ public class ItemController {
         int res = stm.executeUpdate();
         return res > 0;
     }
+    
+    
+    public static Item searchItem(String code) throws ClassNotFoundException, SQLException {
+        String SQL = "Select * From Item where code='" + code + "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(SQL);
+        if (rst.next()) {
+            String description = rst.getString("Description");
+            double price = rst.getDouble("unitPrice");
+            int qty = rst.getInt("qtyOnHand");
+            return new Item(code, description, price, qty);
+        }
+        return null;
+    }
+    
+    public static boolean deleteItem(String code) throws ClassNotFoundException, SQLException {
+        String SQL = "Delete From Item where code='" + code + "'";
+        Statement stm = DBConnection.getInstance().getConnection().createStatement();
+        return stm.executeUpdate(SQL) > 0;
+    }
+    
 }
