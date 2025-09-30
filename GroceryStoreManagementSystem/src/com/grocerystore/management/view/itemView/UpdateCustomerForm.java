@@ -4,6 +4,13 @@
  */
 package com.grocerystore.management.view.itemView;
 
+import com.grocerystore.management.controller.ItemController;
+import com.grocerystore.management.model.Item;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hiranyamendis
@@ -169,7 +176,21 @@ public class UpdateCustomerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtyActionPerformed
 
     private void txtCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeActionPerformed
-        // TODO add your handling code here:
+        try {
+            String code = txtCode.getText();
+            Item item = ItemController.searchItem(code);
+            
+            if (item!=null) {
+                txtDescription.setText(item.getDescription());
+                txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+                txtQty.setText(String.valueOf(item.getQtyOnHand()));
+            }else{
+                JOptionPane.showMessageDialog(this, "Item not found!");
+            }
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UpdateCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtCodeActionPerformed
 
     private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
@@ -185,7 +206,23 @@ public class UpdateCustomerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
+        try {
+            String txtCode = this.txtCode.getText();
+            String description = txtDescription.getText();
+            double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+            int qtyOnHand = Integer.parseInt(txtQty.getText());
+            
+            boolean isUpdated = ItemController.updateItem(new Item(txtCode, description, unitPrice, qtyOnHand));
+            
+            if (isUpdated) {
+                JOptionPane.showMessageDialog(this, "Update Successfully!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Update Successfully!");
+            }
+        
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UpdateCustomerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
